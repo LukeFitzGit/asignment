@@ -14,12 +14,32 @@ namespace BowmanCarHire
 
     public partial class FrmCars : Form
     {
-        
+        public string recReg;
+        public string recEng;
+        public string recRPD;
+        public string recDateReg;
+        public string recAvailable;
+
+
         SQLiteConnection connect = new SQLiteConnection(@"data source = hire.db");
+
 
         public FrmCars()
         {
             InitializeComponent();
+            //FrmCars frmrec = new FrmCars();
+            //frmrec.recReg = frmVehicleReg.Text;
+           // frmrec.recEng = frmEngine.Text;
+           // frmrec.recRPD = frmRentalPerDay.Text;
+           // frmrec.recDateReg = frmDateReg.Text;
+           // frmrec.recAvailable = frmAvailable.Text;
+
+            //var frmCurrentRecordList = new List<string>();
+            //frmCurrentRecordList.Add(frmVehicleReg.Text);
+            //frmCurrentRecordList.Add(frmEngine.Text);
+            //frmCurrentRecordList.Add(frmRentalPerDay.Text);
+            //frmCurrentRecordList.Add(frmDateReg.Text);
+            //frmCurrentRecordList.Add(frmAvailable.Text);
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -51,12 +71,13 @@ namespace BowmanCarHire
 
         int recordControlNo = 1;
         int totalRecords;
-        
+
+
 
         public void recTotal()
         {//FINDS THE TOTAL AMOUNT OF RECORDS WHEN CALLED
             string findTotal = @"SELECT COUNT(*) FROM tblCar";
-            
+
             connect.Open();
             string getTOT = findTotal;
             var command = connect.CreateCommand();
@@ -72,7 +93,7 @@ namespace BowmanCarHire
             recordCount.Text = $"{recordControlNo} of {totalRecords}";
             connect.Close();
         }
-        
+
         public void recordCounter(string frmBtn)
         {//UPDATES RECORD BOX DEPENDING ON BUTTONS PRESSED &&  ALSO USED AS A REFERENCE FOR CYCLING THROUGH -> getData()
             if (frmBtn == "next")
@@ -114,9 +135,11 @@ namespace BowmanCarHire
             }
         }
 
+        
         public void getData()
         {//RETURNS DATA BASED ON SELECTED RECORD.
             int rowPosition = recordControlNo - 1;
+
             try
             {
                 connect.Open();
@@ -129,6 +152,7 @@ namespace BowmanCarHire
                     {
                         var reg = reader.GetString(0);
                         frmVehicleReg.Text = reg;
+                        
                     }
                 }
                 string getMake = $@"SELECT Make FROM (SELECT * from tblCar LIMIT 1 OFFSET {rowPosition});";
@@ -195,6 +219,7 @@ namespace BowmanCarHire
                 }
                 connect.Close();
             }
+
             catch (Exception)
             {
                 MessageBox.Show("Cannot find data");
@@ -243,7 +268,7 @@ namespace BowmanCarHire
             this.Hide();
             openAddForm.ShowDialog();
             this.Close();
-          
+
         }
         public void addRecord()
         {//ADDS A NEW RECORDS TO THE DATABASE, BASED ON THE INFORMATION IN THE TEXT FIELDS. CALLED WITH ADD BUTTON.
@@ -257,7 +282,7 @@ namespace BowmanCarHire
                 {
                     availability = 0;
                 }
-                             
+
                 string addARecord = $@"INSERT INTO tblCar (VehicleRegNo, Make, EngineSize, DateRegistered, RentalPerDay, Available) VALUES ('" + frmVehicleReg.Text + "', '" + frmMake.Text + "', '" + frmEngine.Text + "', '" + frmDateReg.Text + "', '" + frmRentalPerDay.Text.TrimStart('$') + "', '" + availability + "')";
                 connect.Open();
                 SQLiteCommand insertSQL = new SQLiteCommand(connect);
@@ -287,7 +312,7 @@ namespace BowmanCarHire
                 {
                     availability = 0;
                 }
-            
+
                 string addARecord = $@"UPDATE tblCar SET VehicleRegNo = '" + frmVehicleReg.Text + "', Make = '" + frmMake.Text + "', EngineSize == '" + frmEngine.Text + "', DateRegistered== '" + frmDateReg.Text + "', RentalPerDay = '" + frmRentalPerDay.Text.TrimStart('$') + "', Available = '" + availability + "' WHERE VehicleRegNo = (SELECT VehicleRegNo from tblCar limit 1 OFFSET '" + j + "');";
                 connect.Open();
                 SQLiteCommand insertSQL = new SQLiteCommand(connect);
@@ -302,28 +327,25 @@ namespace BowmanCarHire
                 MessageBox.Show("Cannot update data");
                 return;
             }
+            //UPDATE BUTTON
+            //GRAY OUT THE UPDATE BUTTON UNTIL SOMETHING IS INPUTTED INTO FIELDS
+            //MAKE THE VEHICLE REG UNEDITABLE
+            //WHEN A BOX IS CHANGED SO IS THE COLOR
+            //CANCEL BUTTON IS GRAYED OUT ALSO UNTIL TEXTBOX IS CHANGED
         }
-        private void btnDelete_Click(object sender, EventArgs e)
-        {//DELETES CURRENT DISPLAYED DATA FROM DATABASE
-            try
-            {
-                string deleteARecord = $@"DELETE FROM tblCar WHERE VehicleRegNo = '{frmVehicleReg.Text}'";
+        private void btnDelete_Click(object sender, EventArgs e) {
 
-                connect.Open();
-                string sendData2 = deleteARecord;
-                SQLiteCommand deleteSQL = new SQLiteCommand(connect);
-                deleteSQL.CommandText = sendData2;
-                deleteSQL.ExecuteNonQuery();
-                connect.Close();
-                recTotal();
-                getData();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Cannot delete data");
-            }
-            //ISSUE: numbers are not displaying correctly after a deletion has been made
+
+           
+
+
+            frmDelete goToDeleteFrm = new frmDelete();
+            this.Hide();
+            goToDeleteFrm.ShowDialog();
+            this.Close();   
         }
+ 
+
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
