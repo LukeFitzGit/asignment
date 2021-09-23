@@ -111,7 +111,7 @@ namespace BowmanCarHire
             // btnRun
             // 
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(524, 41);
+            this.btnRun.Location = new System.Drawing.Point(524, 56);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(87, 38);
             this.btnRun.TabIndex = 7;

@@ -19,4 +19,3 @@ C:\Users\Lukes-Computer\source\repos\BowmanCarHire\BowmanCarHire\bin\Debug\Entit
 C:\Users\Lukes-Computer\source\repos\BowmanCarHire\BowmanCarHire\bin\Debug\System.Data.SQLite.xml
 C:\Users\Lukes-Computer\source\repos\BowmanCarHire\BowmanCarHire\obj\Debug\CarsDataBase.csproj.CopyComplete
 C:\Users\Lukes-Computer\source\repos\BowmanCarHire\BowmanCarHire\obj\Debug\BowmanCarHire.frmAdd.resources
-C:\Users\Lukes-Computer\source\repos\BowmanCarHire\BowmanCarHire\obj\Debug\BowmanCarHire.frmDelete.resources

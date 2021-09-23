@@ -39,70 +39,71 @@ namespace BowmanCarHire
         private void searchData()
         {//SETTING UP SEARCH PARAMATERS
             string findData = @"SELECT * FROM tblCar";
-
-            //Available
-            if (cboField.Text == "Available")
+            if (cboField.Text != "" && cboOperator.Text != "" && valueTextbox.Text != "")
             {
-                if (valueTextbox.Text == "Yes")
+                //Available
+                if (cboField.Text == "Available")
                 {
+                    if (valueTextbox.Text == "Yes")
+                    {
 
-                    cboOperator.Text = "=";
-                    findData = $@"SELECT * FROM tblcar WHERE Available != 0";
-                    //search
-                }
-                else if (valueTextbox.Text == "No")
-                {
-                    cboOperator.Text = "=";
-                    findData = $@"SELECT * FROM tblcar WHERE Available = 0";
-                    //search
-                }
-                else if (valueTextbox.Text != "Yes" || valueTextbox.Text != "No")
-                {
-                    MessageBox.Show("Please Enter 'Yes' or 'No'. Ensure Capitals are present.");
-                    valueTextbox.Text = "";
-                    return;
-                }
+                        cboOperator.Text = "=";
+                        findData = $@"SELECT * FROM tblcar WHERE Available != 0";
+                        //search
+                    }
+                    else if (valueTextbox.Text == "No")
+                    {
+                        cboOperator.Text = "=";
+                        findData = $@"SELECT * FROM tblcar WHERE Available = 0";
+                        //search
+                    }
+                    else if (valueTextbox.Text != "Yes" || valueTextbox.Text != "No")
+                    {
+                        MessageBox.Show("Please Enter 'Yes' or 'No'. Ensure Capitals are present.");
+                        valueTextbox.Text = "";
+                        return;
+                    }
 
-            }//Engine Size
-            if (cboField.Text == "Engine Size")
-            {
+                }//Engine Size
+                if (cboField.Text == "Engine Size")
+                {
                     findData = $@"SELECT * FROM tblcar WHERE EngineSize {cboOperator.Text} '{valueTextbox.Text.TrimEnd('L')}L'";
+                }
+
+                //Rental Per Day
+                if (cboField.Text == "Rental Per Day")
+                {
+                    findData = $@"SELECT * FROM tblcar WHERE RentalPerDay {cboOperator.Text} '{valueTextbox.Text}'";
+                }
+
+                //Make
+                if (cboField.Text == "Make")
+                {
+                    cboOperator.Text = "=";
+                    findData = $@"SELECT * FROM tblcar WHERE Make = '{valueTextbox.Text}'";
+                }
+
+                //Vehicle Registration Number
+                if (cboField.Text == "Vehicle Registration Number")
+                {
+                    cboOperator.Text = "=";
+                    findData = $@"SELECT * FROM tblcar WHERE VehicleRegNo = '{valueTextbox.Text}'";
+                }
+
+
+
+                //OPENING DB AND SEARCHING PARAMATERS
+                SQLiteConnection connect = new SQLiteConnection(@"data source = hire.db");
+                connect.Open();
+                string query = findData;
+                SQLiteCommand cmd = new SQLiteCommand(query, connect);
+                DataTable dt = new DataTable();
+                SQLiteDataAdapter adapter2 = new SQLiteDataAdapter(cmd);
+                adapter2.Fill(dt);
+                frmDataGrid.DataSource = dt;
+                connect.Close();
             }
-
-            //Rental Per Day
-            if (cboField.Text == "Rental Per Day")
-            {
-                findData = $@"SELECT * FROM tblcar WHERE RentalPerDay {cboOperator.Text} '{valueTextbox.Text}'";
-            }
-
-            //Make
-            if (cboField.Text == "Make")
-            {
-                cboOperator.Text = "=";
-                findData = $@"SELECT * FROM tblcar WHERE Make = '{valueTextbox.Text}'";
-            }
-
-            //Vehicle Registration Number
-            if (cboField.Text == "Vehicle Registration Number")
-            {
-                cboOperator.Text = "=";
-                findData = $@"SELECT * FROM tblcar WHERE VehicleRegNo = '{valueTextbox.Text}'";
-            }
-
-
-
-            //OPENING DB AND SEARCHING PARAMATERS
-            SQLiteConnection connect = new SQLiteConnection(@"data source = hire.db");
-            connect.Open();
-            string query = findData;
-            SQLiteCommand cmd = new SQLiteCommand(query, connect);
-            DataTable dt = new DataTable();
-            SQLiteDataAdapter adapter2 = new SQLiteDataAdapter(cmd);
-            adapter2.Fill(dt);
-            frmDataGrid.DataSource = dt;
-            connect.Close();
         }
-        //ISSUE : SEARCH IS RETURNING EVEN THOUGH NOTHING IS INPUTED
 
        
         

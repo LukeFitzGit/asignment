@@ -65,23 +65,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="frmCars.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmCars.Designer.cs">
+      <DependentUpon>frmCars.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAdd.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAdd.Designer.cs">
       <DependentUpon>frmAdd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmDelete.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDelete.Designer.cs">
-      <DependentUpon>frmDelete.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSearch.cs">
       <SubType>Form</SubType>
@@ -91,14 +85,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="frmCars.resx">
+      <DependentUpon>frmCars.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAdd.resx">
       <DependentUpon>frmAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDelete.resx">
-      <DependentUpon>frmDelete.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearch.resx">
       <DependentUpon>frmSearch.cs</DependentUpon>

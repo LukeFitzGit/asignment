@@ -14,26 +14,7 @@ namespace BowmanCarHire
 
     public partial class FrmCars : Form
     {
-        private string recReg;
 
-        public string RecReg
-        {
-            get { return recReg;}
-            set { recReg = value;}
-        }
-
-
-
-
-
-
-
-        public string recEng;
-        public string recRPD;
-        public string recDateReg;
-        public string recAvailable;
-        public int recNo;
-        
 
 
 
@@ -162,7 +143,7 @@ namespace BowmanCarHire
             {
                 connect.Open();
                 string getReg = $@"SELECT VehicleRegNo FROM (SELECT * from tblCar LIMIT 1 OFFSET {rowPosition})";
-                recNo = rowPosition;
+                
                 var command = connect.CreateCommand();
                 command.CommandText = getReg;
                 using (var reader = command.ExecuteReader())
@@ -171,7 +152,7 @@ namespace BowmanCarHire
                     {
                         var reg = reader.GetString(0);
                         frmVehicleReg.Text = reg;
-                        RecReg = frmVehicleReg.Text;
+                        
                         
                         
                     }
@@ -350,8 +331,7 @@ namespace BowmanCarHire
                 MessageBox.Show("Cannot update data");
                 return;
             }
-            //UPDATE BUTTON
-            //WHEN A BOX IS CHANGED SO IS THE COLOR
+
 
         }
         private void btnDelete_Click(object sender, EventArgs e) {
@@ -383,6 +363,7 @@ namespace BowmanCarHire
                     deleteSQL.ExecuteNonQuery();
                     connect.Close();
                     recTotal();
+                    recordCounter("last");
                     getData();
                     //TODO Have record counter show currectly after deletion
                 }
@@ -450,6 +431,11 @@ namespace BowmanCarHire
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             
+        }
+
+        private void dateRegTooltip_Popup(object sender, PopupEventArgs e)
+        {
+
         }
     }
 }

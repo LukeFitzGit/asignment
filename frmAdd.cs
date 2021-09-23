@@ -135,7 +135,12 @@ namespace BowmanCarHire
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            frmVehicleReg.Text = "";
+            frmEngine.Text = "";
+            frmDateReg.Text = "";
+            frmMake.Text = "";
+            frmRentalPerDay.Text = "";
+            frmAvailable.Checked = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
