@@ -37,7 +37,7 @@ namespace BowmanCarHire
             this.frmDateReg = new System.Windows.Forms.TextBox();
             this.frmEngine = new System.Windows.Forms.TextBox();
             this.frmMake = new System.Windows.Forms.TextBox();
-            this.frmVehicleReg = new System.Windows.Forms.TextBox();
+            this.delVehicleReg = new System.Windows.Forms.TextBox();
             this.frmAvailLabel = new System.Windows.Forms.Label();
             this.frmRentalLabel = new System.Windows.Forms.Label();
             this.frmDateLabel = new System.Windows.Forms.Label();
@@ -116,12 +116,12 @@ namespace BowmanCarHire
             this.frmMake.Size = new System.Drawing.Size(201, 20);
             this.frmMake.TabIndex = 20;
             // 
-            // frmVehicleReg
+            // delVehicleReg
             // 
-            this.frmVehicleReg.Location = new System.Drawing.Point(280, 128);
-            this.frmVehicleReg.Name = "frmVehicleReg";
-            this.frmVehicleReg.Size = new System.Drawing.Size(125, 20);
-            this.frmVehicleReg.TabIndex = 19;
+            this.delVehicleReg.Location = new System.Drawing.Point(280, 128);
+            this.delVehicleReg.Name = "delVehicleReg";
+            this.delVehicleReg.Size = new System.Drawing.Size(125, 20);
+            this.delVehicleReg.TabIndex = 19;
             // 
             // frmAvailLabel
             // 
@@ -187,7 +187,7 @@ namespace BowmanCarHire
             this.Controls.Add(this.frmDateReg);
             this.Controls.Add(this.frmEngine);
             this.Controls.Add(this.frmMake);
-            this.Controls.Add(this.frmVehicleReg);
+            this.Controls.Add(this.delVehicleReg);
             this.Controls.Add(this.frmAvailLabel);
             this.Controls.Add(this.frmRentalLabel);
             this.Controls.Add(this.frmDateLabel);
@@ -215,7 +215,7 @@ namespace BowmanCarHire
         private System.Windows.Forms.TextBox frmDateReg;
         private System.Windows.Forms.TextBox frmEngine;
         private System.Windows.Forms.TextBox frmMake;
-        private System.Windows.Forms.TextBox frmVehicleReg;
+        private System.Windows.Forms.TextBox delVehicleReg;
         private System.Windows.Forms.Label frmAvailLabel;
         private System.Windows.Forms.Label frmRentalLabel;
         private System.Windows.Forms.Label frmDateLabel;

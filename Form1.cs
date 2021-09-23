@@ -14,11 +14,30 @@ namespace BowmanCarHire
 
     public partial class FrmCars : Form
     {
-        public string recReg;
+        private string recReg;
+
+        public string RecReg
+        {
+            get { return recReg;}
+            set { recReg = value;}
+        }
+
+
+
+
+
+
+
         public string recEng;
         public string recRPD;
         public string recDateReg;
         public string recAvailable;
+        public int recNo;
+        
+
+
+
+
 
 
         SQLiteConnection connect = new SQLiteConnection(@"data source = hire.db");
@@ -29,10 +48,10 @@ namespace BowmanCarHire
             InitializeComponent();
             //FrmCars frmrec = new FrmCars();
             //frmrec.recReg = frmVehicleReg.Text;
-           // frmrec.recEng = frmEngine.Text;
-           // frmrec.recRPD = frmRentalPerDay.Text;
-           // frmrec.recDateReg = frmDateReg.Text;
-           // frmrec.recAvailable = frmAvailable.Text;
+            // frmrec.recEng = frmEngine.Text;
+            // frmrec.recRPD = frmRentalPerDay.Text;
+            // frmrec.recDateReg = frmDateReg.Text;
+            // frmrec.recAvailable = frmAvailable.Text;
 
             //var frmCurrentRecordList = new List<string>();
             //frmCurrentRecordList.Add(frmVehicleReg.Text);
@@ -40,7 +59,9 @@ namespace BowmanCarHire
             //frmCurrentRecordList.Add(frmRentalPerDay.Text);
             //frmCurrentRecordList.Add(frmDateReg.Text);
             //frmCurrentRecordList.Add(frmAvailable.Text);
-        }
+            
+
+    }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -135,6 +156,8 @@ namespace BowmanCarHire
             }
         }
 
+
+
         
         public void getData()
         {//RETURNS DATA BASED ON SELECTED RECORD.
@@ -144,6 +167,7 @@ namespace BowmanCarHire
             {
                 connect.Open();
                 string getReg = $@"SELECT VehicleRegNo FROM (SELECT * from tblCar LIMIT 1 OFFSET {rowPosition})";
+                recNo = rowPosition;
                 var command = connect.CreateCommand();
                 command.CommandText = getReg;
                 using (var reader = command.ExecuteReader())
@@ -152,6 +176,8 @@ namespace BowmanCarHire
                     {
                         var reg = reader.GetString(0);
                         frmVehicleReg.Text = reg;
+                        RecReg = frmVehicleReg.Text;
+                        
                         
                     }
                 }
@@ -217,6 +243,7 @@ namespace BowmanCarHire
                         }
                     }
                 }
+
                 connect.Close();
             }
 
@@ -334,20 +361,56 @@ namespace BowmanCarHire
             //CANCEL BUTTON IS GRAYED OUT ALSO UNTIL TEXTBOX IS CHANGED
         }
         private void btnDelete_Click(object sender, EventArgs e) {
+            DialogResult toDelete = MessageBox.Show("Are you sure you'd like to delete this record?", "Delete Record", MessageBoxButtons.YesNo);
+            if (toDelete == DialogResult.Yes)
+            {
+                deleteData();
+                recTotal();
+                getData();
+            }
+            else if (toDelete == DialogResult.No)
+            {
+                MessageBox.Show("No record has been deleted.");
+            }
 
 
-           
 
-
-            frmDelete goToDeleteFrm = new frmDelete();
-            this.Hide();
-            goToDeleteFrm.ShowDialog();
-            this.Close();   
+            // frmDelete goToDeleteFrm = new frmDelete();
+            //this.Hide();
+            //goToDeleteFrm.ShowDialog();
+            //this.Close();   
         }
- 
+        private void deleteData()
+        {
+            {//DELETES CURRENT DISPLAYED DATA FROM DATABASE
+                try
+                {
+                    string deleteARecord = $@"DELETE FROM tblCar WHERE VehicleRegNo = '{frmVehicleReg.Text}'";
+
+                    connect.Open();
+                    string sendData2 = deleteARecord;
+                    SQLiteCommand deleteSQL = new SQLiteCommand(connect);
+                    deleteSQL.CommandText = sendData2;
+                    deleteSQL.ExecuteNonQuery();
+                    connect.Close();
+
+                    FrmCars totaldata = new FrmCars();
+                    totaldata.recTotal();
+                    FrmCars cars = new FrmCars();
+                    cars.getData();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Cannot delete data");
+                }
+                //TO DO
+                //GET RECORD DETAILS INTO FORM
+                //ATTACH DELETE FUNCTION TO DELETE BUTTON
+            }
+        }
 
 
-        private void btnCancel_Click(object sender, EventArgs e)
+            private void btnCancel_Click(object sender, EventArgs e)
         {
             getData();
         }
