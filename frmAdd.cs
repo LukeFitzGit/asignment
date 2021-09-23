@@ -25,35 +25,40 @@ namespace BowmanCarHire
             //closeCars.Close();
         }
         private int availability;
+        private string returnedReg;
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //STRINGS USED FOR DB
-                
-                string isRegInDb = $@"SELECT VehicleRegNo FROM tblCar WHERE VehicleRegNo = '" + frmVehicleReg.Text + "'";
-                connect.Open();
-                
+            if (frmVehicleReg.Text != "" && frmMake.Text != "" && frmDateReg.Text != "" && frmEngine.Text != "" && frmRentalPerDay.Text != "") {
+                try
+                {
+                    //STRINGS USED FOR DB
 
-                var command = connect.CreateCommand();
-                command.CommandText = isRegInDb;
+                    string isRegInDb = $@"SELECT VehicleRegNo FROM tblCar WHERE VehicleRegNo = '" + frmVehicleReg.Text + "'";
+                    connect.Open();
 
-                using (var reader = command.ExecuteReader())
-                {//GETTING MATCHING RECORD
-                    while (reader.Read()) {               
-                    var reg = reader.GetString(0);
-                        //string returnedReg = reg;
+
+                    var command = connect.CreateCommand();
+                    command.CommandText = isRegInDb;
+
+                    using (var reader = command.ExecuteReader())
+                    {//GETTING MATCHING RECORD
+                        while (reader.Read())
+                        {
+                            var reg = reader.GetString(0);
+                            returnedReg = reg;
+                        }
+
 
 
                         //RETURNING IF VEHICLE REG MATCHES RECORD IN DB
-                        if (frmVehicleReg.Text == reg)
-                            {
-                            MessageBox.Show("Vehicle Registration Number may already exist in the database.");            
+                        if (frmVehicleReg.Text == returnedReg)
+                        {
+                            MessageBox.Show("Vehicle Registration Number may already exist in the database.");
                         }
 
                         //ADDING RECORD IF VehicleRegNo DOESN'T MATCH
-                        if (frmVehicleReg.Text != reg)
-                            {
+                        if (frmVehicleReg.Text != returnedReg)
+                        {
                             if (frmAvailable.Checked == true)
                             {
                                 availability = 1;
@@ -69,25 +74,32 @@ namespace BowmanCarHire
                             SQLiteCommand insertSQL = new SQLiteCommand(addARecord, connect);
                             insertSQL.CommandText = addARecord;
                             insertSQL.ExecuteNonQuery();
-                            
-                        }
-                        }
-                    connect.Close();
+                            MessageBox.Show("You have succesfully added a new record to the database");
+                            connect.Close();
 
+                        }
+                        
+
+                    }
+                    //FrmCars totaldata = new FrmCars();
+                   // totaldata.recTotal();
+                    //FrmCars cars = new FrmCars();
+                    //cars.getData();
+                    
+                    //CHECK IF VEHICLE REGISTRATION IS ALREADY IN DB
+                    //IF IT IS NOTIFY THE USER THAT THE RECORD CANNOT BE ADDED AS THE REG ALREADY EXISTS
+                    //WHEN FINISHED ADDING, WE NEED TO LET THE USER KNOW THAT IT HAS BEEN ADDED
+                    //MessageBox.Show("You have succesfully added this record.");
                 }
-                FrmCars totaldata = new FrmCars();
-                totaldata.recTotal();
-                FrmCars cars = new FrmCars();
-                cars.getData();
-                //CHECK IF VEHICLE REGISTRATION IS ALREADY IN DB
-                //IF IT IS NOTIFY THE USER THAT THE RECORD CANNOT BE ADDED AS THE REG ALREADY EXISTS
-                //WHEN FINISHED ADDING, WE NEED TO LET THE USER KNOW THAT IT HAS BEEN ADDED
-                //MessageBox.Show("You have succesfully added this record.");
+                catch (Exception)
+                {
+                    MessageBox.Show("Cannot add data");
+                    return;
+                }
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Cannot add data");
-                return;
+                MessageBox.Show("Please make sure all fields are completed");
             }
         }
 

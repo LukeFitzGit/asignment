@@ -58,6 +58,9 @@ namespace BowmanCarHire
             this.rpdTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.carMakeTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.frmTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.updatePanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.updatePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -74,6 +77,7 @@ namespace BowmanCarHire
             // frmVehicleRegLabel
             // 
             this.frmVehicleRegLabel.AutoSize = true;
+            this.frmVehicleRegLabel.BackColor = System.Drawing.Color.Transparent;
             this.frmVehicleRegLabel.Location = new System.Drawing.Point(99, 162);
             this.frmVehicleRegLabel.Name = "frmVehicleRegLabel";
             this.frmVehicleRegLabel.Size = new System.Drawing.Size(141, 13);
@@ -84,6 +88,7 @@ namespace BowmanCarHire
             // frmMakeLabel
             // 
             this.frmMakeLabel.AutoSize = true;
+            this.frmMakeLabel.BackColor = System.Drawing.Color.Transparent;
             this.frmMakeLabel.Location = new System.Drawing.Point(99, 195);
             this.frmMakeLabel.Name = "frmMakeLabel";
             this.frmMakeLabel.Size = new System.Drawing.Size(34, 13);
@@ -94,6 +99,7 @@ namespace BowmanCarHire
             // FrmEngineLabel
             // 
             this.FrmEngineLabel.AutoSize = true;
+            this.FrmEngineLabel.BackColor = System.Drawing.Color.Transparent;
             this.FrmEngineLabel.Location = new System.Drawing.Point(99, 226);
             this.FrmEngineLabel.Name = "FrmEngineLabel";
             this.FrmEngineLabel.Size = new System.Drawing.Size(63, 13);
@@ -103,6 +109,7 @@ namespace BowmanCarHire
             // frmDateLabel
             // 
             this.frmDateLabel.AutoSize = true;
+            this.frmDateLabel.BackColor = System.Drawing.Color.Transparent;
             this.frmDateLabel.Location = new System.Drawing.Point(99, 257);
             this.frmDateLabel.Name = "frmDateLabel";
             this.frmDateLabel.Size = new System.Drawing.Size(84, 13);
@@ -112,6 +119,7 @@ namespace BowmanCarHire
             // frmRentalLabel
             // 
             this.frmRentalLabel.AutoSize = true;
+            this.frmRentalLabel.BackColor = System.Drawing.Color.Transparent;
             this.frmRentalLabel.Location = new System.Drawing.Point(99, 289);
             this.frmRentalLabel.Name = "frmRentalLabel";
             this.frmRentalLabel.Size = new System.Drawing.Size(79, 13);
@@ -121,6 +129,7 @@ namespace BowmanCarHire
             // frmAvailLabel
             // 
             this.frmAvailLabel.AutoSize = true;
+            this.frmAvailLabel.BackColor = System.Drawing.Color.Transparent;
             this.frmAvailLabel.Location = new System.Drawing.Point(99, 314);
             this.frmAvailLabel.Name = "frmAvailLabel";
             this.frmAvailLabel.Size = new System.Drawing.Size(50, 13);
@@ -131,6 +140,7 @@ namespace BowmanCarHire
             // 
             this.frmVehicleReg.Location = new System.Drawing.Point(264, 162);
             this.frmVehicleReg.Name = "frmVehicleReg";
+            this.frmVehicleReg.ReadOnly = true;
             this.frmVehicleReg.Size = new System.Drawing.Size(125, 20);
             this.frmVehicleReg.TabIndex = 7;
             this.vehicleTooltip.SetToolTip(this.frmVehicleReg, "Input your vehicle registraion number here");
@@ -143,6 +153,7 @@ namespace BowmanCarHire
             this.frmMake.Size = new System.Drawing.Size(201, 20);
             this.frmMake.TabIndex = 8;
             this.carMakeTooltip.SetToolTip(this.frmMake, "Enter the make of the car");
+            this.frmMake.TextChanged += new System.EventHandler(this.frmMake_TextChanged);
             // 
             // frmEngine
             // 
@@ -150,6 +161,7 @@ namespace BowmanCarHire
             this.frmEngine.Name = "frmEngine";
             this.frmEngine.Size = new System.Drawing.Size(125, 20);
             this.frmEngine.TabIndex = 9;
+            this.frmEngine.TextChanged += new System.EventHandler(this.frmEngine_TextChanged);
             // 
             // frmDateReg
             // 
@@ -157,6 +169,7 @@ namespace BowmanCarHire
             this.frmDateReg.Name = "frmDateReg";
             this.frmDateReg.Size = new System.Drawing.Size(100, 20);
             this.frmDateReg.TabIndex = 10;
+            this.frmDateReg.TextChanged += new System.EventHandler(this.frmDateReg_TextChanged);
             // 
             // frmRentalPerDay
             // 
@@ -165,6 +178,7 @@ namespace BowmanCarHire
             this.frmRentalPerDay.Size = new System.Drawing.Size(100, 20);
             this.frmRentalPerDay.TabIndex = 11;
             this.rpdTooltip.SetToolTip(this.frmRentalPerDay, "Input Cost of rental per day");
+            this.frmRentalPerDay.TextChanged += new System.EventHandler(this.frmRentalPerDay_TextChanged);
             // 
             // frmAvailable
             // 
@@ -302,6 +316,29 @@ namespace BowmanCarHire
             this.vehicleTooltip.Tag = "Veh Reg";
             this.vehicleTooltip.Popup += new System.Windows.Forms.PopupEventHandler(this.vehicleTooltip_Popup);
             // 
+            // updatePanel
+            // 
+            this.updatePanel.BackColor = System.Drawing.Color.Transparent;
+            this.updatePanel.Controls.Add(this.label2);
+            this.updatePanel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.updatePanel.Location = new System.Drawing.Point(81, 135);
+            this.updatePanel.Name = "updatePanel";
+            this.updatePanel.Size = new System.Drawing.Size(404, 210);
+            this.updatePanel.TabIndex = 26;
+            this.updatePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Crimson;
+            this.label2.Location = new System.Drawing.Point(180, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(197, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "You are currently editing a record";
+            // 
             // FrmCars
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,11 +369,14 @@ namespace BowmanCarHire
             this.Controls.Add(this.frmMakeLabel);
             this.Controls.Add(this.frmVehicleRegLabel);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.updatePanel);
             this.Name = "FrmCars";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Task A Luke Fitzgerald 16/09/2021";
             this.frmTooltip.SetToolTip(this, "Car Hire Menu");
             this.Load += new System.EventHandler(this.FrmCars_Load);
+            this.updatePanel.ResumeLayout(false);
+            this.updatePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,6 +412,8 @@ namespace BowmanCarHire
         private System.Windows.Forms.ToolTip rpdTooltip;
         private System.Windows.Forms.ToolTip carMakeTooltip;
         private System.Windows.Forms.ToolTip frmTooltip;
+        private System.Windows.Forms.Panel updatePanel;
+        private System.Windows.Forms.Label label2;
     }
 }
 

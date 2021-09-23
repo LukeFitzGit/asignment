@@ -46,21 +46,6 @@ namespace BowmanCarHire
         public FrmCars()
         {
             InitializeComponent();
-            //FrmCars frmrec = new FrmCars();
-            //frmrec.recReg = frmVehicleReg.Text;
-            // frmrec.recEng = frmEngine.Text;
-            // frmrec.recRPD = frmRentalPerDay.Text;
-            // frmrec.recDateReg = frmDateReg.Text;
-            // frmrec.recAvailable = frmAvailable.Text;
-
-            //var frmCurrentRecordList = new List<string>();
-            //frmCurrentRecordList.Add(frmVehicleReg.Text);
-            //frmCurrentRecordList.Add(frmEngine.Text);
-            //frmCurrentRecordList.Add(frmRentalPerDay.Text);
-            //frmCurrentRecordList.Add(frmDateReg.Text);
-            //frmCurrentRecordList.Add(frmAvailable.Text);
-            
-
     }
 
         private void label1_Click(object sender, EventArgs e)
@@ -84,17 +69,16 @@ namespace BowmanCarHire
             getData();
         }
 
+
         private void button2_Click(object sender, EventArgs e)
         {
             recordCounter("previous");
             getData();
         }
 
+
         int recordControlNo = 1;
         int totalRecords;
-
-
-
         public void recTotal()
         {//FINDS THE TOTAL AMOUNT OF RECORDS WHEN CALLED
             string findTotal = @"SELECT COUNT(*) FROM tblCar";
@@ -115,8 +99,9 @@ namespace BowmanCarHire
             connect.Close();
         }
 
+
         public void recordCounter(string frmBtn)
-        {//UPDATES RECORD BOX DEPENDING ON BUTTONS PRESSED &&  ALSO USED AS A REFERENCE FOR CYCLING THROUGH -> getData()
+        {//UPDATES RECORD BOX DEPENDING ON BUTTONS PRESSED && ALSO USED AS A REFERENCE FOR CYCLING THROUGH -> getData()
             if (frmBtn == "next")
             {
                 if (recordControlNo < totalRecords)
@@ -138,10 +123,12 @@ namespace BowmanCarHire
             recordCount.Text = $"{recordControlNo} of {totalRecords}";
         }
 
+
         private void recordCount_TextChanged(object sender, EventArgs e)
         {
             recordCount.Text = $"{recordControlNo} of {totalRecords}";
         }
+
 
         private void FrmCars_Load(object sender, EventArgs e)
         {
@@ -154,11 +141,19 @@ namespace BowmanCarHire
             {
                 MessageBox.Show("Can't load database. Check database connection.");
             }
+            btnUpdate.Enabled = false;
+            btnCancel.Enabled = false;
+            updatePanel.Visible = false;
+
+
+            if (btnUpdate.Enabled == true)
+            {
+                updatePanel.Visible = true;
+            }
+
+
         }
 
-
-
-        
         public void getData()
         {//RETURNS DATA BASED ON SELECTED RECORD.
             int rowPosition = recordControlNo - 1;
@@ -243,7 +238,9 @@ namespace BowmanCarHire
                         }
                     }
                 }
-
+                btnUpdate.Enabled = false;
+                btnCancel.Enabled = false;
+                updatePanel.Visible = false;
                 connect.Close();
             }
 
@@ -283,21 +280,20 @@ namespace BowmanCarHire
 
         private void frmVehicleReg_TextChanged(object sender, EventArgs e)
         {
-
+            btnUpdate.Enabled = true;
         }
 
 
         private int availability;
         private void button4_Click(object sender, EventArgs e)
-        {
-            //addRecord();           
+        {         
             frmAdd openAddForm = new frmAdd();
             this.Hide();
             openAddForm.ShowDialog();
             this.Close();
 
         }
-        public void addRecord()
+        /*public void addRecord()
         {//ADDS A NEW RECORDS TO THE DATABASE, BASED ON THE INFORMATION IN THE TEXT FIELDS. CALLED WITH ADD BUTTON.
             try
             {
@@ -325,7 +321,7 @@ namespace BowmanCarHire
                 MessageBox.Show("Cannot add data");
                 return;
             }
-        }
+        }*/
         private void updateRecord()
         {//UPDATES RECORD BASED ON INFORMATION IN TEXT FIELDS
             int j = recordControlNo - 1;
@@ -340,10 +336,10 @@ namespace BowmanCarHire
                     availability = 0;
                 }
 
-                string addARecord = $@"UPDATE tblCar SET VehicleRegNo = '" + frmVehicleReg.Text + "', Make = '" + frmMake.Text + "', EngineSize == '" + frmEngine.Text + "', DateRegistered== '" + frmDateReg.Text + "', RentalPerDay = '" + frmRentalPerDay.Text.TrimStart('$') + "', Available = '" + availability + "' WHERE VehicleRegNo = (SELECT VehicleRegNo from tblCar limit 1 OFFSET '" + j + "');";
+                string updateARecord = $@"UPDATE tblCar SET VehicleRegNo = '" + frmVehicleReg.Text + "', Make = '" + frmMake.Text + "', EngineSize == '" + frmEngine.Text + "', DateRegistered== '" + frmDateReg.Text + "', RentalPerDay = '" + frmRentalPerDay.Text.TrimStart('$') + "', Available = '" + availability + "' WHERE VehicleRegNo = (SELECT VehicleRegNo from tblCar limit 1 OFFSET '" + j + "');";
                 connect.Open();
                 SQLiteCommand insertSQL = new SQLiteCommand(connect);
-                insertSQL.CommandText = addARecord;
+                insertSQL.CommandText = updateARecord;
                 insertSQL.ExecuteNonQuery();
                 connect.Close();
                 recTotal();
@@ -355,30 +351,23 @@ namespace BowmanCarHire
                 return;
             }
             //UPDATE BUTTON
-            //GRAY OUT THE UPDATE BUTTON UNTIL SOMETHING IS INPUTTED INTO FIELDS
-            //MAKE THE VEHICLE REG UNEDITABLE
             //WHEN A BOX IS CHANGED SO IS THE COLOR
-            //CANCEL BUTTON IS GRAYED OUT ALSO UNTIL TEXTBOX IS CHANGED
+
         }
         private void btnDelete_Click(object sender, EventArgs e) {
             DialogResult toDelete = MessageBox.Show("Are you sure you'd like to delete this record?", "Delete Record", MessageBoxButtons.YesNo);
             if (toDelete == DialogResult.Yes)
             {
                 deleteData();
-                recTotal();
-                getData();
+                MessageBox.Show("Record Deleted");
+                
+
             }
             else if (toDelete == DialogResult.No)
             {
                 MessageBox.Show("No record has been deleted.");
             }
 
-
-
-            // frmDelete goToDeleteFrm = new frmDelete();
-            //this.Hide();
-            //goToDeleteFrm.ShowDialog();
-            //this.Close();   
         }
         private void deleteData()
         {
@@ -393,19 +382,14 @@ namespace BowmanCarHire
                     deleteSQL.CommandText = sendData2;
                     deleteSQL.ExecuteNonQuery();
                     connect.Close();
-
-                    FrmCars totaldata = new FrmCars();
-                    totaldata.recTotal();
-                    FrmCars cars = new FrmCars();
-                    cars.getData();
+                    recTotal();
+                    getData();
+                    //TODO Have record counter show currectly after deletion
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Cannot delete data");
                 }
-                //TO DO
-                //GET RECORD DETAILS INTO FORM
-                //ATTACH DELETE FUNCTION TO DELETE BUTTON
             }
         }
 
@@ -413,44 +397,59 @@ namespace BowmanCarHire
             private void btnCancel_Click(object sender, EventArgs e)
         {
             getData();
+            btnUpdate.Enabled = false;
+            btnCancel.Enabled = false;
+            updatePanel.Visible = false;
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            updateRecord();
+            DialogResult toUpdate = MessageBox.Show("Are you sure you'd like to Update this record?", "Update Record", MessageBoxButtons.YesNo);
+            if (toUpdate == DialogResult.Yes)
+            {
+                updateRecord();
+                MessageBox.Show("Record Updated");
+
+
+            }
+            else if (toUpdate == DialogResult.No)
+            {
+                MessageBox.Show("No record has been deleted.");
+            }
+        }
+
+        private void frmMake_TextChanged(object sender, EventArgs e)
+        {
+
+            btnUpdate.Enabled = true;
+            btnCancel.Enabled = true;
+            updatePanel.Visible = true;
+        }
+
+        private void frmEngine_TextChanged(object sender, EventArgs e)
+        {
+            btnUpdate.Enabled = true;
+            btnCancel.Enabled = true;
+            updatePanel.Visible = true;
+        }
+
+        private void frmDateReg_TextChanged(object sender, EventArgs e)
+        {
+            btnUpdate.Enabled = true;
+            btnCancel.Enabled = true;
+            updatePanel.Visible = true;
+        }
+
+        private void frmRentalPerDay_TextChanged(object sender, EventArgs e)
+        {
+            btnUpdate.Enabled = true;
+            btnCancel.Enabled = true;
+            updatePanel.Visible = true;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            
         }
     }
 }
-
-
-
-
-/*{//---DISPLAYS THE DATABASE ONTO THE DATA GRID---
-    SQLiteConnection con = new SQLiteConnection(@"data source = tictacdb.db");
-    con.Open();
-    string query = "SELECT * FROM scoresTable";
-    SQLiteCommand cmd = new SQLiteCommand(query, con);
-    DataTable dt = new DataTable();
-    SQLiteDataAdapter adapter = new SQLiteDataAdapter(cmd);
-    adapter.Fill(dt);
-    dataGridView1.DataSource = dt;
-}
-public void scoreToDb1()
-{//---INSERTS PLAYER 1'S SCORE INTO DATABASE---
-    SQLiteConnection con = new SQLiteConnection(@"data source = tictacdb.db");
-    con.Open();
-    string sendData = "INSERT INTO scoresTable (player, winCount) VALUES ('" + p1Label.Text + "'," + p1sc.Text + ")";
-    SQLiteCommand insertSQL = new SQLiteCommand(con);
-    insertSQL.CommandText = sendData;
-    insertSQL.ExecuteNonQuery();
-    con.Close();
-}
-public void scoreToDb2()
-{//---INSERTS PLAYER 2'S SCORE INTO DATABASE---
-    SQLiteConnection con = new SQLiteConnection(@"data source = tictacdb.db");
-    con.Open();
-    string sendData2 = "INSERT INTO scoresTable (player, winCount) VALUES ('" + p2Label.Text + "'," + p2sc.Text + ")";
-    SQLiteCommand insertSQL = new SQLiteCommand(con);
-    insertSQL.CommandText = sendData2;
-    insertSQL.ExecuteNonQuery();
-    con.Close();*/
