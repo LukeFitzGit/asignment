@@ -21,14 +21,12 @@ namespace BowmanCarHire
 
         private void frmAdd_Load(object sender, EventArgs e)
         {
-            //FrmCars closeCars = new FrmCars();
-            //closeCars.Close();
         }
         private int availability;
         private string returnedReg;
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (frmVehicleReg.Text != "" && frmMake.Text != "" && frmDateReg.Text != "" && frmEngine.Text != "" && frmRentalPerDay.Text != "") {
+            if (frmVehicleReg.Text != "" && frmMake.Text != "" && frmDateReg.Text != "" && frmEngine.Text != "" && frmRentalPerDay.Value != 0) {
                 try
                 {
                     //STRINGS USED FOR DB
@@ -69,7 +67,7 @@ namespace BowmanCarHire
                             }
 
                             string addARecord = $@"INSERT INTO tblCar (VehicleRegNo, Make, EngineSize, DateRegistered, RentalPerDay, Available) VALUES 
-                                            ('" + frmVehicleReg.Text + "', '" + frmMake.Text + "', '" + frmEngine.Text + "', '" + frmDateReg.Text + "', '" + frmRentalPerDay.Text.TrimStart('$') + "', '" + availability + "')";
+                                            ('" + frmVehicleReg.Text + "', '" + frmMake.Text + "', '" + frmEngine.Text + "', '" + frmDateReg.Text + "', '" + frmRentalPerDay.Value + "', '" + availability + "')";
 
                             SQLiteCommand insertSQL = new SQLiteCommand(addARecord, connect);
                             insertSQL.CommandText = addARecord;
@@ -80,16 +78,7 @@ namespace BowmanCarHire
                         }
                         
 
-                    }
-                    //FrmCars totaldata = new FrmCars();
-                   // totaldata.recTotal();
-                    //FrmCars cars = new FrmCars();
-                    //cars.getData();
-                    
-                    //CHECK IF VEHICLE REGISTRATION IS ALREADY IN DB
-                    //IF IT IS NOTIFY THE USER THAT THE RECORD CANNOT BE ADDED AS THE REG ALREADY EXISTS
-                    //WHEN FINISHED ADDING, WE NEED TO LET THE USER KNOW THAT IT HAS BEEN ADDED
-                    //MessageBox.Show("You have succesfully added this record.");
+                    }               
                 }
                 catch (Exception)
                 {
@@ -139,7 +128,7 @@ namespace BowmanCarHire
             frmEngine.Text = "";
             frmDateReg.Text = "";
             frmMake.Text = "";
-            frmRentalPerDay.Text = "";
+            frmRentalPerDay.Value = 0;
             frmAvailable.Checked = false;
         }
 
@@ -150,6 +139,11 @@ namespace BowmanCarHire
             this.Hide();
             goToFrmCars.ShowDialog();
             this.Close();
+        }
+
+        private void frmRentalPerDay_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -41,7 +41,6 @@ namespace BowmanCarHire
             this.frmMake = new System.Windows.Forms.TextBox();
             this.frmEngine = new System.Windows.Forms.TextBox();
             this.frmDateReg = new System.Windows.Forms.TextBox();
-            this.frmRentalPerDay = new System.Windows.Forms.TextBox();
             this.frmAvailable = new System.Windows.Forms.CheckBox();
             this.btnFirst = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
@@ -60,8 +59,12 @@ namespace BowmanCarHire
             this.frmTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.updatePanel = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateRegTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.engineTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.dateregTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.availTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.frmRentalPerDay = new System.Windows.Forms.NumericUpDown();
             this.updatePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.frmRentalPerDay)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -165,6 +168,7 @@ namespace BowmanCarHire
             this.frmEngine.Size = new System.Drawing.Size(125, 20);
             this.frmEngine.TabIndex = 9;
             this.frmEngine.TabStop = false;
+            this.engineTooltip.SetToolTip(this.frmEngine, "Input size of engine (eg. 1.4L)");
             this.frmEngine.TextChanged += new System.EventHandler(this.frmEngine_TextChanged);
             // 
             // frmDateReg
@@ -174,17 +178,8 @@ namespace BowmanCarHire
             this.frmDateReg.Size = new System.Drawing.Size(100, 20);
             this.frmDateReg.TabIndex = 10;
             this.frmDateReg.TabStop = false;
+            this.dateregTooltip.SetToolTip(this.frmDateReg, "Please Input date (eg. 2009-05-23)");
             this.frmDateReg.TextChanged += new System.EventHandler(this.frmDateReg_TextChanged);
-            // 
-            // frmRentalPerDay
-            // 
-            this.frmRentalPerDay.Location = new System.Drawing.Point(264, 289);
-            this.frmRentalPerDay.Name = "frmRentalPerDay";
-            this.frmRentalPerDay.Size = new System.Drawing.Size(100, 20);
-            this.frmRentalPerDay.TabIndex = 11;
-            this.frmRentalPerDay.TabStop = false;
-            this.rpdTooltip.SetToolTip(this.frmRentalPerDay, "Input Cost of rental per day");
-            this.frmRentalPerDay.TextChanged += new System.EventHandler(this.frmRentalPerDay_TextChanged);
             // 
             // frmAvailable
             // 
@@ -194,51 +189,64 @@ namespace BowmanCarHire
             this.frmAvailable.Size = new System.Drawing.Size(15, 14);
             this.frmAvailable.TabIndex = 12;
             this.frmAvailable.TabStop = false;
+            this.availTooltip.SetToolTip(this.frmAvailable, "Check if vehicle is available");
             this.frmAvailable.UseVisualStyleBackColor = true;
             this.frmAvailable.CheckedChanged += new System.EventHandler(this.frmVehicleReg_TextChanged);
             // 
             // btnFirst
             // 
+            this.btnFirst.BackColor = System.Drawing.Color.White;
+            this.btnFirst.FlatAppearance.BorderSize = 0;
+            this.btnFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFirst.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFirst.Location = new System.Drawing.Point(64, 398);
             this.btnFirst.Name = "btnFirst";
             this.btnFirst.Size = new System.Drawing.Size(111, 40);
             this.btnFirst.TabIndex = 13;
             this.btnFirst.Text = "First";
-            this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.UseVisualStyleBackColor = false;
             this.btnFirst.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnPrevious
             // 
+            this.btnPrevious.BackColor = System.Drawing.Color.White;
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrevious.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrevious.Location = new System.Drawing.Point(181, 398);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(111, 40);
             this.btnPrevious.TabIndex = 14;
             this.btnPrevious.Text = "Previous";
-            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.UseVisualStyleBackColor = false;
             this.btnPrevious.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnNext
             // 
+            this.btnNext.BackColor = System.Drawing.Color.White;
+            this.btnNext.FlatAppearance.BorderSize = 0;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.Location = new System.Drawing.Point(405, 396);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(111, 40);
             this.btnNext.TabIndex = 17;
             this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.UseVisualStyleBackColor = false;
             this.btnNext.Click += new System.EventHandler(this.button5_Click);
             // 
             // btnLast
             // 
+            this.btnLast.BackColor = System.Drawing.Color.White;
+            this.btnLast.FlatAppearance.BorderSize = 0;
+            this.btnLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLast.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLast.Location = new System.Drawing.Point(522, 396);
             this.btnLast.Name = "btnLast";
             this.btnLast.Size = new System.Drawing.Size(111, 40);
             this.btnLast.TabIndex = 18;
             this.btnLast.Text = "Last";
-            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.UseVisualStyleBackColor = false;
             this.btnLast.Click += new System.EventHandler(this.button6_Click);
             // 
             // recordCount
@@ -255,68 +263,86 @@ namespace BowmanCarHire
             // 
             // btnUpdate
             // 
+            this.btnUpdate.BackColor = System.Drawing.Color.White;
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(659, 116);
+            this.btnUpdate.Location = new System.Drawing.Point(659, 107);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(111, 40);
             this.btnUpdate.TabIndex = 20;
             this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(659, 162);
+            this.btnAdd.Location = new System.Drawing.Point(659, 151);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(111, 40);
             this.btnAdd.TabIndex = 21;
             this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnDelete
             // 
+            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.FlatAppearance.BorderSize = 0;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(659, 207);
+            this.btnDelete.Location = new System.Drawing.Point(659, 195);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(111, 40);
             this.btnDelete.TabIndex = 22;
             this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSearch
             // 
+            this.btnSearch.BackColor = System.Drawing.Color.White;
+            this.btnSearch.FlatAppearance.BorderSize = 0;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(659, 250);
+            this.btnSearch.Location = new System.Drawing.Point(659, 239);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(111, 40);
             this.btnSearch.TabIndex = 23;
             this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.button8_Click);
             // 
             // btnCancel
             // 
+            this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(659, 297);
+            this.btnCancel.Location = new System.Drawing.Point(659, 283);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(111, 40);
             this.btnCancel.TabIndex = 24;
             this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.Color.White;
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(659, 343);
+            this.btnExit.Location = new System.Drawing.Point(659, 327);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(111, 40);
             this.btnExit.TabIndex = 25;
             this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.button10_Click);
             // 
             // vehicleRegTooltip
@@ -329,7 +355,7 @@ namespace BowmanCarHire
             this.updatePanel.BackColor = System.Drawing.Color.Transparent;
             this.updatePanel.Controls.Add(this.label2);
             this.updatePanel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.updatePanel.Location = new System.Drawing.Point(81, 135);
+            this.updatePanel.Location = new System.Drawing.Point(79, 134);
             this.updatePanel.Name = "updatePanel";
             this.updatePanel.Size = new System.Drawing.Size(404, 210);
             this.updatePanel.TabIndex = 26;
@@ -347,17 +373,28 @@ namespace BowmanCarHire
             this.label2.TabIndex = 0;
             this.label2.Text = "You are currently editing a record";
             // 
-            // dateRegTooltip
+            // frmRentalPerDay
             // 
-            this.dateRegTooltip.ToolTipTitle = "Date the vehicle is registered";
-            this.dateRegTooltip.Popup += new System.Windows.Forms.PopupEventHandler(this.dateRegTooltip_Popup);
+            this.frmRentalPerDay.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.frmRentalPerDay.Location = new System.Drawing.Point(264, 287);
+            this.frmRentalPerDay.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.frmRentalPerDay.Name = "frmRentalPerDay";
+            this.frmRentalPerDay.Size = new System.Drawing.Size(120, 20);
+            this.frmRentalPerDay.TabIndex = 1;
+            this.frmRentalPerDay.TabStop = false;
+            this.frmRentalPerDay.ValueChanged += new System.EventHandler(this.frmRentalPerDay_ValueChanged);
             // 
             // FrmCars
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.frmRentalPerDay);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSearch);
@@ -370,7 +407,6 @@ namespace BowmanCarHire
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnFirst);
             this.Controls.Add(this.frmAvailable);
-            this.Controls.Add(this.frmRentalPerDay);
             this.Controls.Add(this.frmDateReg);
             this.Controls.Add(this.frmEngine);
             this.Controls.Add(this.frmMake);
@@ -390,6 +426,7 @@ namespace BowmanCarHire
             this.Load += new System.EventHandler(this.FrmCars_Load);
             this.updatePanel.ResumeLayout(false);
             this.updatePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.frmRentalPerDay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -408,7 +445,6 @@ namespace BowmanCarHire
         private System.Windows.Forms.TextBox frmMake;
         private System.Windows.Forms.TextBox frmEngine;
         private System.Windows.Forms.TextBox frmDateReg;
-        private System.Windows.Forms.TextBox frmRentalPerDay;
         private System.Windows.Forms.CheckBox frmAvailable;
         private System.Windows.Forms.Button btnFirst;
         private System.Windows.Forms.Button btnPrevious;
@@ -427,7 +463,10 @@ namespace BowmanCarHire
         private System.Windows.Forms.ToolTip frmTooltip;
         private System.Windows.Forms.Panel updatePanel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ToolTip dateRegTooltip;
+        private System.Windows.Forms.ToolTip engineTooltip;
+        private System.Windows.Forms.ToolTip dateregTooltip;
+        private System.Windows.Forms.ToolTip availTooltip;
+        private System.Windows.Forms.NumericUpDown frmRentalPerDay;
     }
 }
 

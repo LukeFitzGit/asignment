@@ -14,8 +14,10 @@ namespace BowmanCarHire
 
     public partial class FrmCars : Form
     {
-
-
+ 
+        //MAKE FIELDS ONLY TAKE CERTAIN INPUTS
+        //REWRITE TOOLTIPS
+        //FIX EDIT NOTIFICATION FOR RPD
 
 
 
@@ -132,6 +134,8 @@ namespace BowmanCarHire
                 updatePanel.Visible = true;
             }
 
+           
+
 
         }
 
@@ -151,10 +155,7 @@ namespace BowmanCarHire
                     while (reader.Read())
                     {
                         var reg = reader.GetString(0);
-                        frmVehicleReg.Text = reg;
-                        
-                        
-                        
+                        frmVehicleReg.Text = reg;                 
                     }
                 }
                 string getMake = $@"SELECT Make FROM (SELECT * from tblCar LIMIT 1 OFFSET {rowPosition});";
@@ -198,7 +199,7 @@ namespace BowmanCarHire
                     while (reader5.Read())
                     {
                         var rpd = reader5.GetInt32(0);
-                        frmRentalPerDay.Text = $"${Convert.ToString(rpd)}";
+                        frmRentalPerDay.Value = rpd;
                     }
                 }
                 string getavail = $@"SELECT Available FROM (SELECT * from tblCar LIMIT 1 OFFSET {rowPosition});";
@@ -222,6 +223,8 @@ namespace BowmanCarHire
                 btnUpdate.Enabled = false;
                 btnCancel.Enabled = false;
                 updatePanel.Visible = false;
+                
+                
                 connect.Close();
             }
 
@@ -261,7 +264,9 @@ namespace BowmanCarHire
 
         private void frmVehicleReg_TextChanged(object sender, EventArgs e)
         {
-            btnUpdate.Enabled = true;
+           btnUpdate.Enabled = true;
+           btnCancel.Enabled = true;
+           updatePanel.Visible = true;
         }
 
 
@@ -317,7 +322,7 @@ namespace BowmanCarHire
                     availability = 0;
                 }
 
-                string updateARecord = $@"UPDATE tblCar SET VehicleRegNo = '" + frmVehicleReg.Text + "', Make = '" + frmMake.Text + "', EngineSize == '" + frmEngine.Text + "', DateRegistered== '" + frmDateReg.Text + "', RentalPerDay = '" + frmRentalPerDay.Text.TrimStart('$') + "', Available = '" + availability + "' WHERE VehicleRegNo = (SELECT VehicleRegNo from tblCar limit 1 OFFSET '" + j + "');";
+                string updateARecord = $@"UPDATE tblCar SET VehicleRegNo = '" + frmVehicleReg.Text + "', Make = '" + frmMake.Text + "', EngineSize == '" + frmEngine.Text + "', DateRegistered== '" + frmDateReg.Text + "', RentalPerDay = '" + frmRentalPerDay.Value + "', Available = '" + availability + "' WHERE VehicleRegNo = (SELECT VehicleRegNo from tblCar limit 1 OFFSET '" + j + "');";
                 connect.Open();
                 SQLiteCommand insertSQL = new SQLiteCommand(connect);
                 insertSQL.CommandText = updateARecord;
@@ -423,6 +428,7 @@ namespace BowmanCarHire
 
         private void frmRentalPerDay_TextChanged(object sender, EventArgs e)
         {
+
             btnUpdate.Enabled = true;
             btnCancel.Enabled = true;
             updatePanel.Visible = true;
@@ -436,6 +442,13 @@ namespace BowmanCarHire
         private void dateRegTooltip_Popup(object sender, PopupEventArgs e)
         {
 
+        }
+
+        private void frmRentalPerDay_ValueChanged(object sender, EventArgs e)
+        {
+            btnUpdate.Enabled = true;
+            btnCancel.Enabled = true;
+            updatePanel.Visible = true;
         }
     }
 }

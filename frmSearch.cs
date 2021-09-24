@@ -142,6 +142,7 @@ namespace BowmanCarHire
         private void cboField_SelectedIndexChanged(object sender, EventArgs e)
         {
             removeOrAddOperators();
+            
         }
 
         private void removeOrAddOperators()

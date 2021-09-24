@@ -38,12 +38,14 @@ namespace BowmanCarHire
             this.frmDataGrid = new System.Windows.Forms.DataGridView();
             this.btnRun = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.frmDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // frmFieldLabel
             // 
             this.frmFieldLabel.AutoSize = true;
+            this.frmFieldLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.frmFieldLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frmFieldLabel.Location = new System.Drawing.Point(38, 63);
             this.frmFieldLabel.Name = "frmFieldLabel";
@@ -55,6 +57,7 @@ namespace BowmanCarHire
             // frmOperatorLabel
             // 
             this.frmOperatorLabel.AutoSize = true;
+            this.frmOperatorLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.frmOperatorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frmOperatorLabel.Location = new System.Drawing.Point(216, 63);
             this.frmOperatorLabel.Name = "frmOperatorLabel";
@@ -65,6 +68,7 @@ namespace BowmanCarHire
             // frmValueLabel
             // 
             this.frmValueLabel.AutoSize = true;
+            this.frmValueLabel.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.frmValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.frmValueLabel.Location = new System.Drawing.Point(349, 63);
             this.frmValueLabel.Name = "frmValueLabel";
@@ -102,38 +106,54 @@ namespace BowmanCarHire
             // frmDataGrid
             // 
             this.frmDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.frmDataGrid.Location = new System.Drawing.Point(41, 158);
+            this.frmDataGrid.Location = new System.Drawing.Point(32, 158);
             this.frmDataGrid.Name = "frmDataGrid";
-            this.frmDataGrid.Size = new System.Drawing.Size(570, 152);
+            this.frmDataGrid.Size = new System.Drawing.Size(579, 152);
             this.frmDataGrid.TabIndex = 6;
             this.frmDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // btnRun
             // 
+            this.btnRun.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnRun.FlatAppearance.BorderSize = 0;
+            this.btnRun.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(524, 56);
+            this.btnRun.Location = new System.Drawing.Point(524, 31);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(87, 38);
+            this.btnRun.Size = new System.Drawing.Size(103, 51);
             this.btnRun.TabIndex = 7;
             this.btnRun.Text = "Run";
-            this.btnRun.UseVisualStyleBackColor = true;
+            this.btnRun.UseVisualStyleBackColor = false;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
             // btnClose
             // 
+            this.btnClose.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(524, 100);
+            this.btnClose.Location = new System.Drawing.Point(524, 88);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(87, 38);
+            this.btnClose.Size = new System.Drawing.Size(103, 50);
             this.btnClose.TabIndex = 8;
             this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(32, 31);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(486, 107);
+            this.panel1.TabIndex = 9;
             // 
             // frmSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(639, 322);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRun);
@@ -144,6 +164,7 @@ namespace BowmanCarHire
             this.Controls.Add(this.frmValueLabel);
             this.Controls.Add(this.frmOperatorLabel);
             this.Controls.Add(this.frmFieldLabel);
+            this.Controls.Add(this.panel1);
             this.Name = "frmSearch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Task A Luke Fitzgerald 17/09/2021";
@@ -165,5 +186,6 @@ namespace BowmanCarHire
         private System.Windows.Forms.DataGridView frmDataGrid;
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel panel1;
     }
 }

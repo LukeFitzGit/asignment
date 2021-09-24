@@ -30,7 +30,6 @@ namespace BowmanCarHire
         private void InitializeComponent()
         {
             this.frmAvailable = new System.Windows.Forms.CheckBox();
-            this.frmRentalPerDay = new System.Windows.Forms.TextBox();
             this.frmDateReg = new System.Windows.Forms.TextBox();
             this.frmEngine = new System.Windows.Forms.TextBox();
             this.frmMake = new System.Windows.Forms.TextBox();
@@ -44,29 +43,23 @@ namespace BowmanCarHire
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnCLear = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.frmRentalPerDay = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.frmRentalPerDay)).BeginInit();
             this.SuspendLayout();
             // 
             // frmAvailable
             // 
             this.frmAvailable.AutoSize = true;
-            this.frmAvailable.Location = new System.Drawing.Point(269, 266);
+            this.frmAvailable.Location = new System.Drawing.Point(215, 232);
             this.frmAvailable.Name = "frmAvailable";
             this.frmAvailable.Size = new System.Drawing.Size(15, 14);
             this.frmAvailable.TabIndex = 24;
             this.frmAvailable.UseVisualStyleBackColor = true;
             this.frmAvailable.CheckedChanged += new System.EventHandler(this.frmAvailable_CheckedChanged);
             // 
-            // frmRentalPerDay
-            // 
-            this.frmRentalPerDay.Location = new System.Drawing.Point(269, 239);
-            this.frmRentalPerDay.Name = "frmRentalPerDay";
-            this.frmRentalPerDay.Size = new System.Drawing.Size(100, 20);
-            this.frmRentalPerDay.TabIndex = 23;
-            this.frmRentalPerDay.TextChanged += new System.EventHandler(this.frmRentalPerDay_TextChanged);
-            // 
             // frmDateReg
             // 
-            this.frmDateReg.Location = new System.Drawing.Point(269, 207);
+            this.frmDateReg.Location = new System.Drawing.Point(215, 173);
             this.frmDateReg.Name = "frmDateReg";
             this.frmDateReg.Size = new System.Drawing.Size(100, 20);
             this.frmDateReg.TabIndex = 22;
@@ -74,7 +67,7 @@ namespace BowmanCarHire
             // 
             // frmEngine
             // 
-            this.frmEngine.Location = new System.Drawing.Point(269, 176);
+            this.frmEngine.Location = new System.Drawing.Point(215, 142);
             this.frmEngine.Name = "frmEngine";
             this.frmEngine.Size = new System.Drawing.Size(125, 20);
             this.frmEngine.TabIndex = 21;
@@ -82,7 +75,7 @@ namespace BowmanCarHire
             // 
             // frmMake
             // 
-            this.frmMake.Location = new System.Drawing.Point(269, 145);
+            this.frmMake.Location = new System.Drawing.Point(215, 111);
             this.frmMake.Name = "frmMake";
             this.frmMake.Size = new System.Drawing.Size(201, 20);
             this.frmMake.TabIndex = 20;
@@ -90,7 +83,7 @@ namespace BowmanCarHire
             // 
             // frmVehicleReg
             // 
-            this.frmVehicleReg.Location = new System.Drawing.Point(269, 112);
+            this.frmVehicleReg.Location = new System.Drawing.Point(215, 78);
             this.frmVehicleReg.Name = "frmVehicleReg";
             this.frmVehicleReg.Size = new System.Drawing.Size(125, 20);
             this.frmVehicleReg.TabIndex = 19;
@@ -99,7 +92,7 @@ namespace BowmanCarHire
             // frmAvailLabel
             // 
             this.frmAvailLabel.AutoSize = true;
-            this.frmAvailLabel.Location = new System.Drawing.Point(104, 264);
+            this.frmAvailLabel.Location = new System.Drawing.Point(50, 230);
             this.frmAvailLabel.Name = "frmAvailLabel";
             this.frmAvailLabel.Size = new System.Drawing.Size(50, 13);
             this.frmAvailLabel.TabIndex = 18;
@@ -108,7 +101,7 @@ namespace BowmanCarHire
             // frmRentalLabel
             // 
             this.frmRentalLabel.AutoSize = true;
-            this.frmRentalLabel.Location = new System.Drawing.Point(104, 239);
+            this.frmRentalLabel.Location = new System.Drawing.Point(50, 205);
             this.frmRentalLabel.Name = "frmRentalLabel";
             this.frmRentalLabel.Size = new System.Drawing.Size(79, 13);
             this.frmRentalLabel.TabIndex = 17;
@@ -117,7 +110,7 @@ namespace BowmanCarHire
             // frmDateLabel
             // 
             this.frmDateLabel.AutoSize = true;
-            this.frmDateLabel.Location = new System.Drawing.Point(104, 207);
+            this.frmDateLabel.Location = new System.Drawing.Point(50, 173);
             this.frmDateLabel.Name = "frmDateLabel";
             this.frmDateLabel.Size = new System.Drawing.Size(84, 13);
             this.frmDateLabel.TabIndex = 16;
@@ -126,7 +119,7 @@ namespace BowmanCarHire
             // FrmEngineLabel
             // 
             this.FrmEngineLabel.AutoSize = true;
-            this.FrmEngineLabel.Location = new System.Drawing.Point(104, 176);
+            this.FrmEngineLabel.Location = new System.Drawing.Point(50, 142);
             this.FrmEngineLabel.Name = "FrmEngineLabel";
             this.FrmEngineLabel.Size = new System.Drawing.Size(63, 13);
             this.FrmEngineLabel.TabIndex = 15;
@@ -135,7 +128,7 @@ namespace BowmanCarHire
             // frmMakeLabel
             // 
             this.frmMakeLabel.AutoSize = true;
-            this.frmMakeLabel.Location = new System.Drawing.Point(104, 145);
+            this.frmMakeLabel.Location = new System.Drawing.Point(50, 111);
             this.frmMakeLabel.Name = "frmMakeLabel";
             this.frmMakeLabel.Size = new System.Drawing.Size(34, 13);
             this.frmMakeLabel.TabIndex = 14;
@@ -144,7 +137,7 @@ namespace BowmanCarHire
             // frmVehicleRegLabel
             // 
             this.frmVehicleRegLabel.AutoSize = true;
-            this.frmVehicleRegLabel.Location = new System.Drawing.Point(104, 112);
+            this.frmVehicleRegLabel.Location = new System.Drawing.Point(50, 78);
             this.frmVehicleRegLabel.Name = "frmVehicleRegLabel";
             this.frmVehicleRegLabel.Size = new System.Drawing.Size(141, 13);
             this.frmVehicleRegLabel.TabIndex = 13;
@@ -152,8 +145,9 @@ namespace BowmanCarHire
             // 
             // btnAdd
             // 
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(482, 320);
+            this.btnAdd.Location = new System.Drawing.Point(187, 276);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(111, 40);
             this.btnAdd.TabIndex = 25;
@@ -163,8 +157,9 @@ namespace BowmanCarHire
             // 
             // btnCLear
             // 
+            this.btnCLear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCLear.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCLear.Location = new System.Drawing.Point(344, 320);
+            this.btnCLear.Location = new System.Drawing.Point(53, 276);
             this.btnCLear.Name = "btnCLear";
             this.btnCLear.Size = new System.Drawing.Size(111, 40);
             this.btnCLear.TabIndex = 26;
@@ -174,8 +169,9 @@ namespace BowmanCarHire
             // 
             // btnClose
             // 
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(637, 320);
+            this.btnClose.Location = new System.Drawing.Point(323, 276);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(111, 40);
             this.btnClose.TabIndex = 27;
@@ -183,16 +179,30 @@ namespace BowmanCarHire
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // frmRentalPerDay
+            // 
+            this.frmRentalPerDay.Location = new System.Drawing.Point(215, 203);
+            this.frmRentalPerDay.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.frmRentalPerDay.Name = "frmRentalPerDay";
+            this.frmRentalPerDay.Size = new System.Drawing.Size(120, 20);
+            this.frmRentalPerDay.TabIndex = 28;
+            this.frmRentalPerDay.ValueChanged += new System.EventHandler(this.frmRentalPerDay_ValueChanged);
+            // 
             // frmAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.ClientSize = new System.Drawing.Size(466, 350);
+            this.Controls.Add(this.frmRentalPerDay);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnCLear);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.frmAvailable);
-            this.Controls.Add(this.frmRentalPerDay);
             this.Controls.Add(this.frmDateReg);
             this.Controls.Add(this.frmEngine);
             this.Controls.Add(this.frmMake);
@@ -204,8 +214,10 @@ namespace BowmanCarHire
             this.Controls.Add(this.frmMakeLabel);
             this.Controls.Add(this.frmVehicleRegLabel);
             this.Name = "frmAdd";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmAdd";
             this.Load += new System.EventHandler(this.frmAdd_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.frmRentalPerDay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,7 +226,6 @@ namespace BowmanCarHire
         #endregion
 
         private System.Windows.Forms.CheckBox frmAvailable;
-        private System.Windows.Forms.TextBox frmRentalPerDay;
         private System.Windows.Forms.TextBox frmDateReg;
         private System.Windows.Forms.TextBox frmEngine;
         private System.Windows.Forms.TextBox frmMake;
@@ -228,5 +239,6 @@ namespace BowmanCarHire
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnCLear;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.NumericUpDown frmRentalPerDay;
     }
 }
