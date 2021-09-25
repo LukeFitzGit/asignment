@@ -63,8 +63,10 @@ namespace BowmanCarHire
             this.dateregTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.availTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.frmRentalPerDay = new System.Windows.Forms.NumericUpDown();
+            this.frmDataGrid = new System.Windows.Forms.DataGridView();
             this.updatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frmRentalPerDay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frmDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -160,6 +162,7 @@ namespace BowmanCarHire
             this.frmMake.TabStop = false;
             this.carMakeTooltip.SetToolTip(this.frmMake, "Enter the make of the car");
             this.frmMake.TextChanged += new System.EventHandler(this.frmMake_TextChanged);
+            this.frmMake.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmMake_KeyDown);
             // 
             // frmEngine
             // 
@@ -170,6 +173,7 @@ namespace BowmanCarHire
             this.frmEngine.TabStop = false;
             this.engineTooltip.SetToolTip(this.frmEngine, "Input size of engine (eg. 1.4L)");
             this.frmEngine.TextChanged += new System.EventHandler(this.frmEngine_TextChanged);
+            this.frmEngine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmEngine_KeyDown);
             // 
             // frmDateReg
             // 
@@ -180,6 +184,7 @@ namespace BowmanCarHire
             this.frmDateReg.TabStop = false;
             this.dateregTooltip.SetToolTip(this.frmDateReg, "Please Input date (eg. 2009-05-23)");
             this.frmDateReg.TextChanged += new System.EventHandler(this.frmDateReg_TextChanged);
+            this.frmDateReg.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmDateReg_KeyDown);
             // 
             // frmAvailable
             // 
@@ -192,6 +197,7 @@ namespace BowmanCarHire
             this.availTooltip.SetToolTip(this.frmAvailable, "Check if vehicle is available");
             this.frmAvailable.UseVisualStyleBackColor = true;
             this.frmAvailable.CheckedChanged += new System.EventHandler(this.frmVehicleReg_TextChanged);
+            this.frmAvailable.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmAvailable_KeyDown);
             // 
             // btnFirst
             // 
@@ -387,6 +393,16 @@ namespace BowmanCarHire
             this.frmRentalPerDay.TabIndex = 1;
             this.frmRentalPerDay.TabStop = false;
             this.frmRentalPerDay.ValueChanged += new System.EventHandler(this.frmRentalPerDay_ValueChanged);
+            this.frmRentalPerDay.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmRentalPerDay_KeyDown);
+            // 
+            // frmDataGrid
+            // 
+            this.frmDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.frmDataGrid.Location = new System.Drawing.Point(27, 39);
+            this.frmDataGrid.Name = "frmDataGrid";
+            this.frmDataGrid.Size = new System.Drawing.Size(148, 73);
+            this.frmDataGrid.TabIndex = 28;
+            this.frmDataGrid.Visible = false;
             // 
             // FrmCars
             // 
@@ -394,6 +410,7 @@ namespace BowmanCarHire
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.frmDataGrid);
             this.Controls.Add(this.frmRentalPerDay);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnCancel);
@@ -427,6 +444,7 @@ namespace BowmanCarHire
             this.updatePanel.ResumeLayout(false);
             this.updatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frmRentalPerDay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.frmDataGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -467,6 +485,7 @@ namespace BowmanCarHire
         private System.Windows.Forms.ToolTip dateregTooltip;
         private System.Windows.Forms.ToolTip availTooltip;
         private System.Windows.Forms.NumericUpDown frmRentalPerDay;
+        private System.Windows.Forms.DataGridView frmDataGrid;
     }
 }
 
